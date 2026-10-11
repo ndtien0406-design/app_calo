@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bảng màu copy từ bản xem thử web (light theme: .screen) -->
+    <color name="proto_primary">#1b7a43</color>
+    <color name="proto_on_primary">#ffffff</color>
+    <color name="proto_primary_container">#c9f2cf</color>
+    <color name="proto_on_primary_container">#05421f</color>
+    <color name="proto_secondary_container">#d9ece0</color>
+    <color name="proto_on_secondary_container">#21363a</color>
+    <color name="proto_surface">#fafdf8</color>
+    <color name="proto_surface_variant">#eef2ea</color>
+    <color name="proto_surface_container">#f2f5ef</color>
+    <color name="proto_surface_container_high">#e9eee5</color>
+    <color name="proto_on_surface">#191c1a</color>
+    <color name="proto_on_surface_variant">#41493f</color>
+    <color name="proto_outline">#c7cfc4</color>
+    <color name="proto_outline_variant">#e0e6dc</color>
+    <color name="proto_error">#ba1a1a</color>
+    <color name="proto_error_container">#ffdad6</color>
+
+    <!-- Màu số liệu biểu đồ theo bản xem thử (bản sáng) -->
+    <color name="chart_over_label">#d93025</color>
+    <color name="chart_under_label">#2e9e5b</color>
+
+    <color name="red_over">#E53935</color>
+    <color name="chart_under">#66BB6A</color>
+    <color name="chart_over">#EF5350</color>
+    <color name="logo_bg">#FEFEFE</color>
+
+    <!-- Màu badge theo loại bữa ăn -->
+    <color name="meal_breakfast_bg">#FFE3BA</color>
+    <color name="meal_breakfast_fg">#5A3800</color>
+    <color name="meal_lunch_bg">#C9F2CF</color>
+    <color name="meal_lunch_fg">#05421F</color>
+    <color name="meal_dinner_bg">#D3E4FF</color>
+    <color name="meal_dinner_fg">#0B3A66</color>
+    <color name="meal_snack_bg">#EBDDFF</color>
+    <color name="meal_snack_fg">#3B2A5C</color>
+</resources>

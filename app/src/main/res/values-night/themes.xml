@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Giao diện tối: dùng cùng cấu trúc Theme.CaloTrack như bản sáng,
+         Android tự lấy các mã màu @color/proto_* từ values-night/colors.xml -->
+    <style name="Theme.CaloTrack" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/proto_primary</item>
+        <item name="colorOnPrimary">@color/proto_on_primary</item>
+        <item name="colorPrimaryContainer">@color/proto_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/proto_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/proto_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/proto_on_secondary_container</item>
+        <item name="colorSurface">@color/proto_surface</item>
+        <item name="colorOnSurface">@color/proto_on_surface</item>
+        <item name="colorSurfaceVariant">@color/proto_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/proto_on_surface_variant</item>
+        <item name="colorSurfaceContainer">@color/proto_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/proto_surface_container_high</item>
+        <item name="colorOutline">@color/proto_outline</item>
+        <item name="colorOutlineVariant">@color/proto_outline_variant</item>
+        <item name="colorError">@color/proto_error</item>
+        <item name="colorErrorContainer">@color/proto_error_container</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowBackground">@color/proto_surface</item>
+        <item name="bottomNavigationStyle">@style/Widget.CaloTrack.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.CaloTrack.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@style/Widget.CaloTrack.BottomNavActiveIndicator</item>
+    </style>
+
+    <style name="Widget.CaloTrack.BottomNavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">?attr/colorSecondaryContainer</item>
+    </style>
+</resources>

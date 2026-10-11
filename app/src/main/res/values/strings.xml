@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CaloTrack</string>
+
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_food">Thực phẩm</string>
+    <string name="nav_history">Lịch sử</string>
+    <string name="nav_settings">Cài đặt</string>
+
+    <string name="overview_today">Nhật ký hôm nay</string>
+    <string name="label_eaten">Đã nạp</string>
+    <string name="label_target">Mục tiêu</string>
+    <string name="label_remaining">Còn lại</string>
+    <string name="label_over">Vượt</string>
+    <string name="unit_kcal">kcal</string>
+
+    <string name="no_meals">Chưa ghi nhận bữa ăn nào.\nNhấn + để thêm bữa ăn.</string>
+    <string name="add_meal">Thêm bữa ăn</string>
+    <string name="edit_meal">Sửa bữa ăn</string>
+
+    <string name="meal_breakfast">Bữa sáng</string>
+    <string name="meal_lunch">Bữa trưa</string>
+    <string name="meal_dinner">Bữa tối</string>
+    <string name="meal_snack">Bữa phụ</string>
+
+    <string name="choose_meal_type">Loại bữa ăn</string>
+    <string name="choose_food">Chọn thực phẩm</string>
+    <string name="quick_entry">Nhập nhanh món ăn</string>
+
+    <string name="hint_food_name">Tên món ăn</string>
+    <string name="hint_cal_per_serving">Calo mỗi khẩu phần</string>
+    <string name="hint_portion">Khẩu phần (VD: 1, 0.5, 1.5)</string>
+
+    <string name="total_calories">Tổng calo</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+
+    <string name="search_food_hint">Tìm kiếm thực phẩm…</string>
+    <string name="add_food">Thêm thực phẩm</string>
+    <string name="edit_food">Sửa thực phẩm</string>
+
+
+    <string name="confirm_delete_title">Xác nhận xóa</string>
+    <string name="confirm_delete_food">Bạn có chắc muốn xóa thực phẩm này?</string>
+    <string name="confirm_delete_meal">Bạn có chắc muốn xóa bữa ăn này?</string>
+    <string name="yes">Đồng ý</string>
+    <string name="no">Hủy bỏ</string>
+
+    <string name="weekly_chart">Calo 7 ngày gần nhất</string>
+    <string name="no_history">Chưa có dữ liệu lịch sử</string>
+
+    <string name="target_label">Mục tiêu calo</string>
+    <string name="save_target">Lưu mục tiêu</string>
+    <string name="dark_mode">Giao diện tối</string>
+    <string name="unit_label">Đơn vị năng lượng</string>
+    <string name="target_saved">Đã lưu mục tiêu mới</string>
+    <string name="invalid_target">Vui lòng nhập mục tiêu từ 500 đến 10000 kcal</string>
+
+    <string name="app_version">Phiên bản 1.0</string>
+    <string name="meals_of_day">Bữa ăn trong ngày</string>
+    <string name="food_deleted">Đã xóa thực phẩm</string>
+    <string name="meal_deleted">Đã xóa bữa ăn</string>
+    <string name="meal_saved">Đã lưu bữa ăn</string>
+    <string name="food_saved">Đã lưu thực phẩm</string>
+    <string name="empty_foods">Chưa có thực phẩm nào.\nNhấn + để thêm món mới.</string>
+    <string name="err_food_name">Vui lòng nhập tên món ăn</string>
+    <string name="err_food_calories">Calo phải là số lớn hơn 0</string>
+    <string name="status_remain">Còn %1$s kcal</string>
+    <string name="status_over">Vượt %1$s kcal</string>
+    <string name="status_exact">Đúng mục tiêu</string>
+
+    <string name="filter_meals">Lọc bữa ăn</string>
+    <string name="filter_foods">Lọc thực phẩm</string>
+    <string name="filter_meal_type">Bữa</string>
+    <string name="filter_kcal_range">Khoảng calo (kcal)</string>
+    <string name="filter_sort">Sắp xếp</string>
+    <string name="filter_group">Nhóm món</string>
+    <string name="filter_unit">Đơn vị khẩu phần</string>
+    <string name="filter_all">Tất cả</string>
+    <string name="sort_time">Theo giờ</string>
+    <string name="sort_cal_desc">Calo cao đến thấp</string>
+    <string name="sort_cal_asc">Calo thấp đến cao</string>
+    <string name="kcal_from">Từ</string>
+    <string name="kcal_to">Đến</string>
+    <string name="clear_filter">Xóa bộ lọc</string>
+    <string name="apply_filter">Áp dụng</string>
+    <string name="legend_under">Dưới mục tiêu</string>
+    <string name="legend_over">Vượt mục tiêu</string>
+    <string name="meals_count">%1$d món</string>
+    <string name="today_summary">Hôm nay: %1$s / %2$s kcal</string>
+    <string name="no_filter_result">Không có bữa ăn nào phù hợp bộ lọc</string>
+    <string name="no_food_filter_result">Không tìm thấy món ăn phù hợp</string>
+    <string name="portion_unit_label">phần</string>
+    <string name="new_day_started">Đã sang ngày mới</string>
+
+    <string name="eaten_today">Calo đã ăn hôm nay</string>
+    <string name="meal_tag_breakfast">Sáng</string>
+    <string name="meal_tag_lunch">Trưa</string>
+    <string name="meal_tag_dinner">Tối</string>
+    <string name="meal_tag_snack">Phụ</string>
+    <string name="history_daily_title">Tổng calo theo ngày</string>
+    <string name="settings_note">Mục tiêu chỉ áp dụng sau khi bấm Lưu; giao diện áp dụng ngay cho toàn bộ ứng dụng.</string>
+    <string name="goal_desc">Áp dụng cho thanh tiến trình và biểu đồ</string>
+    <string name="dark_mode_desc">Chuyển toàn bộ ứng dụng sang tông tối</string>
+
+    <string name="add">Thêm</string>
+    <string name="default_unit">phần</string>
+    <string name="label_food_name">Tên món *</string>
+    <string name="label_food_calories">Lượng calo mỗi phần (kcal) *</string>
+    <string name="label_food_unit">Đơn vị khẩu phần</string>
+    <string name="label_food_category">Nhóm món</string>
+    <string name="hint_food_name_example">Ví dụ: Mì Ý sốt bò băm</string>
+    <string name="hint_food_calories_example">Ví dụ: 350</string>
+    <string name="label_food_pick">Thực phẩm</string>
+    <string name="label_meal_type">Loại bữa ăn</string>
+    <string name="label_portion">Khẩu phần</string>
+    <string name="label_datetime">Ngày &amp; giờ</string>
+    <string name="add_meal_confirm">Thêm bữa ăn</string>
+
+    <string name="prev_day">Ngày trước</string>
+    <string name="next_day">Ngày sau</string>
+    <string name="today">Hôm nay</string>
+    <string name="yesterday">Hôm qua</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="eaten_on_day">Calo đã ăn ngày %1$s</string>
+    <string name="meals_today">Bữa ăn hôm nay</string>
+    <string name="meals_on_day">Bữa ăn ngày %1$s</string>
+</resources>
