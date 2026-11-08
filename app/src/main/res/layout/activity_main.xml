@@ -74,11 +74,37 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
+    <!-- Thanh điều hướng đáy kèm thanh trượt phát sáng Uiverse (Sliding Glow Indicator) -->
+    <FrameLayout
+        android:id="@+id/bottom_nav_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu" />
+        android:background="?attr/colorSurfaceContainer">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <!-- Đường ray mảnh định hình cạnh trên thanh điều hướng -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="top"
+            android:alpha="0.35"
+            android:background="?attr/colorOutlineVariant" />
+
+        <!-- Thanh trượt Uiverse: trượt ngang + co giãn đàn hồi theo tab đang chọn -->
+        <View
+            android:id="@+id/view_nav_slider"
+            android:layout_width="42dp"
+            android:layout_height="3dp"
+            android:layout_gravity="top|start"
+            android:background="@drawable/bg_nav_glow_pill" />
+    </FrameLayout>
 
 </LinearLayout>
