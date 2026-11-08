@@ -49,15 +49,18 @@ class MealAdapter(
             )
 
             // Màu badge theo loại bữa: sáng (hổ phách) / trưa (xanh lá) / tối (xanh dương) / phụ (tím)
-            val (bgRes, fgRes) = when (meal.mealType) {
-                "BREAKFAST" -> R.color.meal_breakfast_bg to R.color.meal_breakfast_fg
-                "LUNCH" -> R.color.meal_lunch_bg to R.color.meal_lunch_fg
-                "DINNER" -> R.color.meal_dinner_bg to R.color.meal_dinner_fg
-                else -> R.color.meal_snack_bg to R.color.meal_snack_fg
+            val (bgRes, fgRes, accentRes) = when (meal.mealType) {
+                "BREAKFAST" -> Triple(R.color.meal_breakfast_bg, R.color.meal_breakfast_fg, R.color.meal_breakfast_accent)
+                "LUNCH" -> Triple(R.color.meal_lunch_bg, R.color.meal_lunch_fg, R.color.meal_lunch_accent)
+                "DINNER" -> Triple(R.color.meal_dinner_bg, R.color.meal_dinner_fg, R.color.meal_dinner_accent)
+                else -> Triple(R.color.meal_snack_bg, R.color.meal_snack_fg, R.color.meal_snack_accent)
             }
             binding.tvMealTypeBadge.backgroundTintList =
                 ColorStateList.valueOf(ContextCompat.getColor(context, bgRes))
             binding.tvMealTypeBadge.setTextColor(ContextCompat.getColor(context, fgRes))
+            // Vạch màu đầu thẻ: nhận biết loại bữa khi lướt nhanh danh sách
+            binding.viewMealTypeAccent.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, accentRes))
 
             binding.btnEditMeal.setOnClickListener { onEdit(meal) }
             binding.btnDeleteMeal.setOnClickListener { onDelete(meal) }

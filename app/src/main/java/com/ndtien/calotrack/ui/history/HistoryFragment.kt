@@ -80,18 +80,34 @@ class HistoryFragment : Fragment() {
             binding.rvHistoryDays.isVisible = days.isNotEmpty()
             adapter.submitList(days.map { it.date to it.total })
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        val newTarget = prefs.targetCalories
-        if (newTarget != targetCalories) {
+        // Mục tiêu dùng chung với Trang chủ (HomeViewModel theo Activity): Cài đặt lưu xong là
+        // biểu đồ, nhãn trạng thái từng ngày và dòng "Hôm nay: x / y kcal" vẽ lại ngay.
+        homeViewModel.targetCalories.observe(viewLifecycleOwner) { newTarget ->
+            if (newTarget == targetCalories) return@observe
             targetCalories = newTarget
             adapter.targetCalories = newTarget
             // Target đổi → trạng thái từng ngày đổi → ép rebind toàn bộ list
             adapter.notifyDataSetChanged()
+            updateChart(lastTotals)
+            updateTodayLine(lastTotals)
         }
-        updateChart(lastTotals)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshOnShow()
+    }
+
+    /** Chuyển tab dùng hide/show nên không gọi onResume() -> làm mới khi tab hiện lại. */
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) refreshOnShow()
+    }
+
+    private fun refreshOnShow() {
+        homeViewModel.refreshTarget()
+        viewModel.refreshRangeIfNewDay()
     }
 
     /** Cấu hình khung biểu đồ (trục, legend, animation) — gọi 1 lần. */
@@ -139,6 +155,8 @@ class HistoryFragment : Fragment() {
 
         // Tắt legend của chart, dùng hàng legend native bên dưới (kiểu bản xem thử)
         chart.legend.isEnabled = false
+        // Chừa chỗ phía trên để nhãn số của cột cao nhất không bị cắt
+        chart.extraTopOffset = 12f
 
         chart.animateY(800)
     }

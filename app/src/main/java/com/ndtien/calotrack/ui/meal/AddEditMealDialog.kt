@@ -195,23 +195,27 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
         else -> "BREAKFAST"
     }
 
-    /** Mặc định loại bữa theo giờ hiện tại: 5-10h sáng, 10-14h trưa, 17-21h tối, còn lại bữa phụ. */
+    /** Mặc định loại bữa theo giờ hiện tại: 5–9h sáng, 10–13h trưa, 17–21h tối, còn lại bữa phụ. */
     private fun defaultMealTypeByHour(): String {
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        return when {
-            hour in 5..10 -> "BREAKFAST"
-            hour in 10..14 -> "LUNCH"
-            hour in 17..21 -> "DINNER"
+        return when (hour) {
+            in 5..9 -> "BREAKFAST"
+            in 10..13 -> "LUNCH"
+            in 17..21 -> "DINNER"
             else -> "SNACK"
         }
     }
+
+    /** Đọc số calo, chấp nhận cả dấu phẩy (VD: 120,5) giống ô khẩu phần. */
+    private fun parseQuickCalories(): Double =
+        _binding?.etQuickCalories?.text?.toString()?.trim()?.replace(',', '.')?.toDoubleOrNull() ?: 0.0
 
     private fun updateComputedCalories() {
         val b = _binding ?: return
         setPortionInvalid(false)
         val portion = parsePortion()
         val calPerServing = if (b.cbQuickEntry.isChecked) {
-            b.etQuickCalories.text?.toString()?.toDoubleOrNull() ?: 0.0
+            parseQuickCalories()
         } else {
             selectedFood?.caloriesPerServing ?: 0.0
         }
@@ -295,7 +299,10 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH)
-        ).show()
+        ).apply {
+            // Không cho ghi bữa ăn vào ngày tương lai (giống bộ chọn ngày ở Trang chủ)
+            datePicker.maxDate = System.currentTimeMillis()
+        }.show()
     }
 
     private fun saveMeal() {
@@ -320,7 +327,7 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
         }
 
         val calPerServing = if (quick) {
-            binding.etQuickCalories.text?.toString()?.toDoubleOrNull() ?: 0.0
+            parseQuickCalories()
         } else {
             selectedFood?.caloriesPerServing ?: 0.0
         }

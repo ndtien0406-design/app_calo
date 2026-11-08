@@ -8,68 +8,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingTop="@dimen/space_4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingEnd="@dimen/space_8">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/touch_target"
                 android:layout_weight="1"
                 android:background="@drawable/bg_search_field"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="12dp"
-                android:paddingEnd="4dp">
+                android:paddingStart="@dimen/space_12"
+                android:paddingEnd="@dimen/space_4">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/search_food_hint"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     android:src="@drawable/ic_search"
                     app:tint="?attr/colorOnSurfaceVariant" />
 
                 <EditText
                     android:id="@+id/et_search_food"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/search_food_hint"
                     android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
                     android:inputType="text"
-                    android:paddingStart="8dp"
+                    android:paddingStart="@dimen/space_8"
+                    android:paddingEnd="@dimen/space_8"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:textColor="?attr/colorOnSurface"
-                    android:textColorHint="?attr/colorOnSurfaceVariant"
-                    android:textSize="15sp" />
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btn_filter_foods"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
+                android:layout_width="@dimen/touch_target"
+                android:layout_height="@dimen/touch_target"
+                android:layout_marginStart="@dimen/space_4"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/filter_foods"
-                android:src="@drawable/ic_filter" />
+                android:src="@drawable/ic_filter"
+                app:tint="?attr/colorOnSurfaceVariant" />
         </LinearLayout>
 
-        <!-- Lọc nhanh theo nhóm món (chip cuộn ngang) -->
+        <!-- Lọc nhanh theo nhóm món: chip cuộn ngang sát mép màn hình, lề trong = screen_padding -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/space_4"
             android:clipToPadding="false"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingEnd="@dimen/screen_padding"
             android:scrollbars="none">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_quick_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="@dimen/space_8"
                 app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true" />
@@ -79,29 +87,31 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="@dimen/space_4">
 
             <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/rv_foods"
-                android:paddingBottom="88dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/space_12"
+                android:paddingEnd="@dimen/space_4"
+                android:paddingBottom="96dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                 android:id="@+id/tv_empty_foods"
-                android:alpha="0.7"
-                android:drawablePadding="12dp"
-                android:drawableTint="?attr/colorOnSurfaceVariant"
-                android:drawableTop="@drawable/ic_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:drawablePadding="@dimen/space_12"
+                android:drawableTop="@drawable/ic_food"
+                android:drawableTint="?attr/colorOnSurfaceVariant"
                 android:gravity="center"
+                android:padding="32dp"
                 android:text="@string/empty_foods"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="14sp"
                 android:visibility="gone" />
 
         </FrameLayout>
@@ -113,10 +123,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/space_16"
+        android:contentDescription="@string/add_food"
         android:src="@drawable/ic_add"
         app:backgroundTint="?attr/colorPrimary"
-        app:tint="?attr/colorOnPrimary"
-        android:contentDescription="@string/add_food" />
+        app:tint="?attr/colorOnPrimary" />
 
 </FrameLayout>

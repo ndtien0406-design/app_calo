@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Ghi đè Material3 bằng đúng bảng màu của bản xem thử web (light/dark qua values-night). -->
     <style name="Theme.CaloTrack" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/proto_primary</item>
@@ -19,25 +19,11 @@
         <item name="colorError">@color/proto_error</item>
         <item name="colorErrorContainer">@color/proto_error_container</item>
         <item name="android:statusBarColor">?attr/colorSurface</item>
+        <!-- Nền sáng -> biểu tượng thanh trạng thái/điều hướng màu tối để còn nhìn thấy -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/proto_surface_container</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
         <item name="android:windowBackground">@color/proto_surface</item>
         <item name="bottomNavigationStyle">@style/Widget.CaloTrack.BottomNavigationView</item>
-    </style>
-
-    <!-- Nhãn phía trên ô nhập (bản xem thử: chữ đậm nhỏ). -->
-    <style name="Widget.CaloTrack.FieldLabel" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- Bottom nav kiểu bản xem thử: icon nằm trong pill, pill active = secondary-container. -->
-    <style name="Widget.CaloTrack.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
-        <item name="itemActiveIndicatorStyle">@style/Widget.CaloTrack.BottomNavActiveIndicator</item>
-    </style>
-
-    <style name="Widget.CaloTrack.BottomNavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">?attr/colorSecondaryContainer</item>
     </style>
 </resources>

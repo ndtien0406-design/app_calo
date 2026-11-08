@@ -110,7 +110,9 @@ class AddEditFoodDialog : BottomSheetDialogFragment() {
             binding.etFoodName.error = getString(R.string.err_food_name)
             return
         }
-        val calories = binding.etFoodCalories.text?.toString().orEmpty().trim().toDoubleOrNull()
+        // Chấp nhận cả dấu phẩy (VD: 120,5) như ô khẩu phần
+        val calories = binding.etFoodCalories.text?.toString().orEmpty().trim()
+            .replace(',', '.').toDoubleOrNull()
         if (calories == null || calories <= 0) {
             binding.etFoodCalories.error = getString(R.string.err_food_calories)
             return

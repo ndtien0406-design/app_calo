@@ -127,4 +127,13 @@
     <string name="eaten_on_day">Calo đã ăn ngày %1$s</string>
     <string name="meals_today">Bữa ăn hôm nay</string>
     <string name="meals_on_day">Bữa ăn ngày %1$s</string>
+
+    <!-- Giao diện mới: Cài đặt chia nhóm, % mục tiêu trên Trang chủ -->
+    <string name="section_goal">Mục tiêu</string>
+    <string name="section_appearance">Giao diện</string>
+    <string name="section_info">Thông tin</string>
+    <string name="label_version">Phiên bản</string>
+    <string name="target_range_hint">Từ 500 đến 10.000 kcal</string>
+    <string name="percent_of_target">%1$d%% mục tiêu</string>
+    <string name="clear_filter_short">Bỏ lọc</string>
 </resources>

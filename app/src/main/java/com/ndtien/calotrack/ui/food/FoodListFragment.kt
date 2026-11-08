@@ -9,10 +9,12 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.chip.Chip
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import com.ndtien.calotrack.R
 import com.ndtien.calotrack.data.AppDatabase
@@ -22,6 +24,7 @@ import com.ndtien.calotrack.databinding.FragmentFoodListBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.Normalizer
 
 /**
  * Màn hình "Thực phẩm": tìm kiếm + bộ lọc + danh sách + thêm/sửa/xóa thực phẩm.
@@ -64,9 +67,16 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
             onDelete = { food -> deleteFoodWithUndo(food) }
         )
         binding.rvFoods.adapter = adapter
-        // Đường phân cách giữa các dòng kiểu bản xem thử
+        // Đường phân cách mảnh (outlineVariant), thụt lề trái theo nội dung dòng
         binding.rvFoods.addItemDecoration(
-            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+            MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
+                isLastItemDecorated = false
+                dividerInsetStart = resources.getDimensionPixelSize(R.dimen.space_4)
+                dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.space_12)
+                dividerColor = MaterialColors.getColor(
+                    binding.rvFoods, com.google.android.material.R.attr.colorOutlineVariant
+                )
+            }
         )
 
         binding.etSearchFood.doOnTextChanged { text, _, _, _ ->
@@ -103,9 +113,10 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
     private fun applyFilter() {
         val b = _binding ?: return
         var list = allFoods
-        val q = currentQuery.trim()
+        val q = normalize(currentQuery.trim())
         if (q.isNotEmpty()) {
-            list = list.filter { it.name.contains(q, ignoreCase = true) }
+            // So khớp không phân biệt hoa thường VÀ không phân biệt dấu: "pho" tìm ra "Phở"
+            list = list.filter { normalize(it.name).contains(q) }
         }
         val f = foodFilter
         quickCategory?.let { qc -> list = list.filter { it.category == qc } }
@@ -192,7 +203,19 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
 
     override fun onFoodSaved() {
         // Flow getAllFoods tự phát lại khi DB đổi -> applyFilter chạy qua observer.
-        Snackbar.make(binding.root, R.string.food_saved, Snackbar.LENGTH_SHORT).show()
+        val b = _binding ?: return
+        Snackbar.make(b.root, R.string.food_saved, Snackbar.LENGTH_SHORT).show()
+    }
+
+    /** Bỏ dấu tiếng Việt + chữ thường để tìm kiếm: "Phở Bò" -> "pho bo". */
+    private fun normalize(s: String): String =
+        Normalizer.normalize(s, Normalizer.Form.NFD)
+            .replace(DIACRITICS, "")
+            .replace('đ', 'd').replace('Đ', 'D')
+            .lowercase()
+
+    companion object {
+        private val DIACRITICS = Regex("\\p{Mn}+")
     }
 
     override fun onDestroyView() {

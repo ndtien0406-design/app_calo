@@ -1,6 +1,7 @@
 package com.ndtien.calotrack
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -98,6 +99,15 @@ class MainActivity : AppCompatActivity() {
                 else -> R.string.nav_home
             }
         )
+        // Trang chủ đã có hàng chọn ngày "Hôm nay · Thứ…, dd/MM" -> ẩn pill ngày để không lặp
+        binding.tvHeaderDate.visibility =
+            if (activeFragment is HomeFragment) View.GONE else View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Ngày trên pill được tính lại mỗi lần quay về app (đúng cả khi đã qua nửa đêm)
+        binding.tvHeaderDate.text = DateUtils.todayPill()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

@@ -3,14 +3,13 @@ package com.ndtien.calotrack.ui.home
 import android.animation.ValueAnimator
 import androidx.core.animation.doOnEnd
 import android.app.DatePickerDialog
-import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -86,6 +85,19 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
 
     override fun onResume() {
         super.onResume()
+        refreshOnShow()
+    }
+
+    /**
+     * Các tab dùng hide/show nên chuyển tab KHÔNG gọi onResume() -> làm mới ở đây
+     * để mục tiêu vừa đổi ở Cài đặt và ngày mới (qua nửa đêm) hiện ngay khi quay lại Trang chủ.
+     */
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) refreshOnShow()
+    }
+
+    private fun refreshOnShow() {
         // Đã sang ngày mới khi app đang mở -> tự về hôm nay (trống), mục tiêu giữ nguyên
         if (viewModel.rollToTodayIfNewDay()) {
             _binding?.let { b ->
@@ -143,6 +155,8 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
         val count = viewModel.activeFilterCount()
         badge.number = count
         badge.isVisible = count > 0
+        // Nút "Bỏ lọc" chỉ có ý nghĩa khi đang lọc
+        b.btnClearFilter.isVisible = count > 0
 
         b.chipActiveFilters.removeAllViews()
         var hasChip = false
@@ -316,7 +330,7 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
             "${getString(R.string.label_over)} ${fmtCal(-remaining)} ${getString(R.string.unit_kcal)}"
         }
 
-        // Màu thẻ + chữ + thanh fill theo trạng thái vượt/dưới mục tiêu
+        // Màu thẻ + chữ + thanh tiến trình theo trạng thái vượt/dưới mục tiêu
         val cardColor = ContextCompat.getColor(
             context,
             if (over) R.color.proto_error_container else R.color.proto_primary_container
@@ -326,27 +340,35 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
             if (over) R.color.proto_error else R.color.proto_on_primary_container
         )
         b.cardOverview.setCardBackgroundColor(cardColor)
-        b.tvEatenBig.setTextColor(onCardColor)
-        b.tvTargetBig.setTextColor(onCardColor)
-        b.tvRemainLabel.setTextColor(onCardColor)
+        listOf(
+            b.tvEatenBig, b.tvEatenUnit, b.tvEatenLabel, b.tvTargetBig, b.tvTargetUnit,
+            b.tvTargetLabel, b.tvRemainLabel, b.tvPercent
+        ).forEach { it.setTextColor(onCardColor) }
 
-        b.viewProgressFill.backgroundTintList = ColorStateList.valueOf(
-            ContextCompat.getColor(context, if (over) R.color.chart_over_label else R.color.chart_under_label)
+        val fillColor = ContextCompat.getColor(
+            context, if (over) R.color.chart_over_label else R.color.chart_under_label
         )
+        b.progressOverview.setIndicatorColor(fillColor)
+        // Track = màu chữ của thẻ, mờ 20% -> luôn hợp với nền thẻ ở cả sáng/tối
+        b.progressOverview.trackColor = ColorUtils.setAlphaComponent(onCardColor, 0x33)
 
-        animateOverview(eaten, (eaten / target).toFloat().coerceIn(0f, 1f))
+        val percent = Math.round(eaten / target * 100).toInt()
+        b.tvPercent.text = getString(R.string.percent_of_target, percent)
+        b.progressOverview.setProgressCompat(percent.coerceIn(0, 100), true)
+        b.progressOverview.contentDescription =
+            "${getString(R.string.eaten_today)}: ${fmtCal(eaten)} / ${fmtCal(target.toDouble())} ${getString(R.string.unit_kcal)}"
+
+        animateOverview(eaten)
     }
 
     private var shownEaten = 0.0
-    private var shownFraction = 0f
     private var overviewAnimator: ValueAnimator? = null
 
-    /** Số calo đếm tăng/giảm mượt + thanh tiến trình chạy tới giá trị mới (~600ms). */
-    private fun animateOverview(eaten: Double, fraction: Float) {
+    /** Số calo đếm tăng/giảm mượt (~600ms); thanh tiến trình tự animate qua setProgressCompat. */
+    private fun animateOverview(eaten: Double) {
         val b = _binding ?: return
         overviewAnimator?.cancel()
         val fromEaten = shownEaten
-        val fromFraction = shownFraction
         overviewAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
             duration = 600
             interpolator = android.view.animation.DecelerateInterpolator()
@@ -354,22 +376,16 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
                 val t = a.animatedFraction
                 val bind = _binding ?: return@addUpdateListener
                 val e = fromEaten + (eaten - fromEaten) * t
-                val f = fromFraction + (fraction - fromFraction) * t
                 bind.tvEatenBig.text = fmtCal(Math.round(e).toDouble())
-                (bind.viewProgressFill.layoutParams as LinearLayout.LayoutParams).weight = f
-                (bind.spaceProgressRest.layoutParams as LinearLayout.LayoutParams).weight = 1f - f
-                bind.viewProgressFill.requestLayout()
             }
             doOnEnd {
                 shownEaten = eaten
-                shownFraction = fraction
                 _binding?.tvEatenBig?.text = fmtCal(eaten)
             }
             start()
         }
         // Nếu bị huỷ giữa chừng thì lần sau bắt đầu từ giá trị đích gần nhất
         shownEaten = eaten
-        shownFraction = fraction
         b.tvEatenBig.contentDescription = fmtCal(eaten)
     }
 

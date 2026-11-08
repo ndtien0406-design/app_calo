@@ -6,22 +6,23 @@
     android:background="?attr/colorSurface"
     android:orientation="vertical">
 
-    <!-- App bar kiểu bản xem thử: logo + tên app + tên tab | pill ngày -->
+    <!-- App bar: logo + tên app + tên tab | pill ngày (ẩn ở Trang chủ vì đã có hàng chọn ngày).
+         Lề ngang = screen_padding để thẳng hàng với nội dung bên dưới. -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="20dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="8dp">
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingEnd="@dimen/screen_padding">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            app:cardCornerRadius="13dp"
-            app:cardElevation="2dp">
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutlineVariant"
+            app:strokeWidth="1dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -32,17 +33,18 @@
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="@dimen/space_12"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorOnSurface"
-                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,27 +52,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nav_home"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="13sp" />
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
         </LinearLayout>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/tv_header_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_date_pill"
-            android:paddingStart="14dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="14dp"
-            android:paddingBottom="8dp"
-            android:textColor="?attr/colorOnSecondaryContainer"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:paddingStart="@dimen/space_12"
+            android:paddingTop="6dp"
+            android:paddingEnd="@dimen/space_12"
+            android:paddingBottom="6dp"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorOnSecondaryContainer" />
     </LinearLayout>
 
     <FrameLayout
