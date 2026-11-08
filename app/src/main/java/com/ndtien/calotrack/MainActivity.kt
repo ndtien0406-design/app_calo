@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
             val changed = targetTag != activeTag
 
             if (changed) {
+                binding.bottomNav.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK)
                 val tx = supportFragmentManager.beginTransaction()
                 activeFragment?.let { tx.hide(it) }
                 var target = supportFragmentManager.findFragmentByTag(targetTag)

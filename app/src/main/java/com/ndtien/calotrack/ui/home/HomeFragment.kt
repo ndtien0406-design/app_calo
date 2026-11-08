@@ -63,6 +63,7 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
 
         // Quan sát filteredMeals (MediatorLiveData) để nó luôn được cập nhật khi bữa ăn / bộ lọc đổi
         viewModel.filteredMeals.observe(viewLifecycleOwner) { updateMealList() }
+        viewModel.meals.observe(viewLifecycleOwner) { updateHeroMealSummary() }
         viewModel.mealFilter.observe(viewLifecycleOwner) { refreshFilterUi() }
 
         binding.btnFilterMeals.setOnClickListener {
@@ -347,17 +348,57 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
         val fillColor = ContextCompat.getColor(
             context, if (over) R.color.chart_over_label else R.color.chart_under_label
         )
+        val trackColor = ColorUtils.setAlphaComponent(onCardColor, 0x33)
         b.progressOverview.setIndicatorColor(fillColor)
         // Track = màu chữ của thẻ, mờ 20% -> luôn hợp với nền thẻ ở cả sáng/tối
-        b.progressOverview.trackColor = ColorUtils.setAlphaComponent(onCardColor, 0x33)
+        b.progressOverview.trackColor = trackColor
 
         val percent = Math.round(eaten / target * 100).toInt()
         b.tvPercent.text = getString(R.string.percent_of_target, percent)
         b.progressOverview.setProgressCompat(percent.coerceIn(0, 100), true)
+        b.ringOverview.setProgress(percent, fillColor, trackColor, onCardColor, animate = true)
         b.progressOverview.contentDescription =
             "${getString(R.string.eaten_today)}: ${fmtCal(eaten)} / ${fmtCal(target.toDouble())} ${getString(R.string.unit_kcal)}"
 
+        updateHeroMealSummary()
         animateOverview(eaten)
+    }
+
+    /** Cập nhật hàng 4 pill phân bổ calo theo 4 bữa (Sáng · Trưa · Tối · Phụ) trên thẻ Hero. */
+    private fun updateHeroMealSummary() {
+        val b = _binding ?: return
+        val context = b.root.context
+        val eaten = viewModel.totalCalories.value ?: 0.0
+        val target = (viewModel.targetCalories.value ?: PrefsManager.DEFAULT_TARGET).coerceAtLeast(1)
+        val over = eaten > target
+        val onCardColor = ContextCompat.getColor(
+            context,
+            if (over) R.color.proto_error else R.color.proto_on_primary_container
+        )
+
+        val allMeals = viewModel.meals.value.orEmpty()
+        var bCal = 0.0
+        var lCal = 0.0
+        var dCal = 0.0
+        var sCal = 0.0
+        for (m in allMeals) {
+            when (m.mealType) {
+                "BREAKFAST" -> bCal += m.totalCalories
+                "LUNCH" -> lCal += m.totalCalories
+                "DINNER" -> dCal += m.totalCalories
+                else -> sCal += m.totalCalories
+            }
+        }
+
+        fun bindPill(tv: android.widget.TextView, labelRes: Int, kcal: Double) {
+            tv.text = "${getString(labelRes)} · ${fmtCal(kcal)}"
+            tv.setTextColor(onCardColor)
+            tv.alpha = if (kcal > 0.0) 0.92f else 0.58f
+        }
+        bindPill(b.tvHeroBreakfast, R.string.meal_tag_breakfast, bCal)
+        bindPill(b.tvHeroLunch, R.string.meal_tag_lunch, lCal)
+        bindPill(b.tvHeroDinner, R.string.meal_tag_dinner, dCal)
+        bindPill(b.tvHeroSnack, R.string.meal_tag_snack, sCal)
     }
 
     private var shownEaten = 0.0

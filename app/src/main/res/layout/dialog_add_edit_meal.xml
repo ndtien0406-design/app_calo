@@ -44,7 +44,8 @@
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp">
+            app:boxCornerRadiusTopStart="14dp"
+            app:hintEnabled="false">
 
             <AutoCompleteTextView
                 android:id="@+id/actv_food"
@@ -295,10 +296,14 @@
 
         <TextView
             android:id="@+id/tv_computed_calories"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:textColor="?attr/colorOnSurface"
+            android:background="@drawable/bg_date_block"
+            android:fontFeatureSettings="tnum"
+            android:gravity="center"
+            android:padding="12dp"
+            android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -323,10 +328,13 @@
                 android:layout_height="52dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1.4"
+                android:background="@drawable/bg_btn_primary_softtech"
                 android:stateListAnimator="@animator/uiverse_press_scale"
                 android:text="@string/add_meal_confirm"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

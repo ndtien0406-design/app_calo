@@ -8,22 +8,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/filter_meals"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_sheet_handle" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/filter_meal_type"
-            android:textSize="16sp"
+            android:text="@string/filter_meals"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            style="@style/Widget.CaloTrack.FieldLabel"
+            android:layout_marginTop="16dp"
+            android:text="@string/filter_meal_type" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_meal_filter"
@@ -75,64 +83,76 @@
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/filter_kcal_range"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            style="@style/Widget.CaloTrack.FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/filter_kcal_range" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
+            android:baselineAligned="false"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_kcal_min"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/kcal_from">
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_kcal_min"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:fontFeatureSettings="tnum"
+                    android:hint="@string/kcal_from"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:text="–"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="-"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_kcal_max"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/kcal_to">
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_kcal_max"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:fontFeatureSettings="tnum"
+                    android:hint="@string/kcal_to"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/filter_sort"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            style="@style/Widget.CaloTrack.FieldLabel"
+            android:layout_marginTop="14dp"
+            android:text="@string/filter_sort" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_sort"
@@ -171,22 +191,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="end"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_clear_meal_filter"
                 style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/clear_filter" />
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="@string/clear_filter"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btn_apply_meal_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/apply_filter" />
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1.4"
+                android:background="@drawable/bg_btn_primary_softtech"
+                android:stateListAnimator="@animator/uiverse_press_scale"
+                android:text="@string/apply_filter"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

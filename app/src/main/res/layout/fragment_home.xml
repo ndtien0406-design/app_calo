@@ -112,6 +112,14 @@
                             android:textAppearance="?attr/textAppearanceBodySmall" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <com.ndtien.calotrack.UiverseCalorieRingView
+                    android:id="@+id/ring_overview"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:importantForAccessibility="no" />
             </LinearLayout>
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -146,6 +154,86 @@
                     android:alpha="0.85"
                     android:fontFeatureSettings="tnum"
                     android:textAppearance="?attr/textAppearanceLabelLarge" />
+            </LinearLayout>
+
+            <!-- Hàng 4 pill phân bổ calo theo 4 bữa trong ngày (Sáng · Trưa · Tối · Phụ) -->
+            <LinearLayout
+                android:id="@+id/hero_meal_summary_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_hero_breakfast"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_meal_pill"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="4dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_hero_lunch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_meal_pill"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="4dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_hero_dinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_meal_pill"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="4dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_hero_snack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_hero_meal_pill"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="4dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -283,10 +371,10 @@
         android:id="@+id/tv_empty_meals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/space_12"
-        android:drawableTop="@drawable/ic_food"
-        android:drawableTint="?attr/colorOnSurfaceVariant"
+        android:drawablePadding="@dimen/space_16"
+        android:drawableTop="@drawable/bg_empty_food_badge"
         android:gravity="center"
+        android:lineSpacingExtra="4dp"
         android:padding="32dp"
         android:text="@string/no_meals"
         android:textAppearance="?attr/textAppearanceBodyMedium"

@@ -42,7 +42,8 @@
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp">
+            app:boxCornerRadiusTopStart="14dp"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_food_name"
@@ -66,12 +67,14 @@
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp">
+            app:boxCornerRadiusTopStart="14dp"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_food_calories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFeatureSettings="tnum"
                 android:hint="@string/hint_food_calories_example"
                 android:inputType="numberDecimal"
                 android:maxLines="1" />
@@ -90,7 +93,8 @@
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp">
+            app:boxCornerRadiusTopStart="14dp"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_food_unit"
@@ -135,10 +139,13 @@
                 android:layout_height="52dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1.4"
+                android:background="@drawable/bg_btn_primary_softtech"
                 android:stateListAnimator="@animator/uiverse_press_scale"
                 android:text="@string/add"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -9,12 +9,9 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.chip.Chip
-import com.google.android.material.color.MaterialColors
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import com.ndtien.calotrack.R
 import com.ndtien.calotrack.data.AppDatabase
@@ -67,17 +64,6 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
             onDelete = { food -> deleteFoodWithUndo(food) }
         )
         binding.rvFoods.adapter = adapter
-        // Đường phân cách mảnh (outlineVariant), thụt lề trái theo nội dung dòng
-        binding.rvFoods.addItemDecoration(
-            MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
-                isLastItemDecorated = false
-                dividerInsetStart = resources.getDimensionPixelSize(R.dimen.space_4)
-                dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.space_12)
-                dividerColor = MaterialColors.getColor(
-                    binding.rvFoods, com.google.android.material.R.attr.colorOutlineVariant
-                )
-            }
-        )
 
         binding.etSearchFood.setOnFocusChangeListener { _, hasFocus ->
             binding.searchBarContainer.isActivated = hasFocus

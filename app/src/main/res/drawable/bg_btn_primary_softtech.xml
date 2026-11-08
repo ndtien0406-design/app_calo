@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nút hành động chính phủ bóng 3D (Uiverse Glossy Beveled Button x CT999 alodev-soft-tech):
+     Lớp 0: Viền sáng đỉnh 1dp (top specular rim light)
+     Lớp 1: Thân nút chuyển sắc dọc 180 độ từ sáng xuống đậm -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_primary_rim" />
+            <corners android:radius="26dp" />
+        </shape>
+    </item>
+    <item android:top="1.2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:endColor="@color/btn_primary_bottom"
+                android:startColor="@color/btn_primary_top"
+                android:type="linear" />
+            <corners android:radius="26dp" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Huy hiệu 64dp cho trạng thái trống (Meals / Foods): khối nổi vát sáng + icon Lucide utensils-crossed -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="64dp"
+        android:height="64dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/card_rim_top" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <item
+        android:width="64dp"
+        android:height="63dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:endColor="@color/badge_grad_bottom"
+                android:startColor="@color/badge_grad_top"
+                android:type="linear" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <item
+        android:width="28dp"
+        android:height="28dp"
+        android:bottom="18dp"
+        android:left="18dp"
+        android:right="18dp"
+        android:top="18dp">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:tint="@color/proto_primary"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:fillColor="#00000000"
+                android:pathData="m16,2 -2.3,2.3a3,3 0,0 0,0 4.2l1.8,1.8a3,3 0,0 0,4.2 0L22,8"
+                android:strokeWidth="2"
+                android:strokeColor="#FF000000"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+            <path
+                android:fillColor="#00000000"
+                android:pathData="M15,15 3.3,3.3a4.2,4.2 0,0 0,0 6l7.3,7.3c0.7,0.7 2,0.7 2.8,0L15,15Zm0,0 7,7"
+                android:strokeWidth="2"
+                android:strokeColor="#FF000000"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+            <path
+                android:fillColor="#00000000"
+                android:pathData="m2.1,21.8 6.4,-6.3"
+                android:strokeWidth="2"
+                android:strokeColor="#FF000000"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+            <path
+                android:fillColor="#00000000"
+                android:pathData="m19,5 -7,7"
+                android:strokeWidth="2"
+                android:strokeColor="#FF000000"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round" />
+        </vector>
+    </item>
+</layer-list>

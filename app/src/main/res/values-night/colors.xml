@@ -63,4 +63,7 @@
     <color name="inset_well_bottom">#131814</color>
     <color name="hero_orb_under">#2A7DD89A</color>
     <color name="hero_orb_over">#2AFF9D97</color>
+    <color name="btn_primary_top">#8EE5AA</color>
+    <color name="btn_primary_bottom">#62C281</color>
+    <color name="btn_primary_rim">#66FFFFFF</color>
 </resources>

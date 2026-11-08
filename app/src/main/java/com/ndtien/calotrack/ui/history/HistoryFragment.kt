@@ -156,7 +156,15 @@ class HistoryFragment : Fragment() {
         // Tắt legend của chart, dùng hàng legend native bên dưới (kiểu bản xem thử)
         chart.legend.isEnabled = false
         // Chừa chỗ phía trên để nhãn số của cột cao nhất không bị cắt
-        chart.extraTopOffset = 12f
+        chart.extraTopOffset = 14f
+
+        val radiusPx = 10f * resources.displayMetrics.density
+        chart.renderer = RoundedGradientBarRenderer(
+            chart,
+            chart.animator,
+            chart.viewPortHandler,
+            radiusPx
+        )
 
         chart.animateY(800)
     }
@@ -196,6 +204,7 @@ class HistoryFragment : Fragment() {
 
         val dataSet = BarDataSet(entries, getString(R.string.weekly_chart))
         dataSet.colors = barColors
+        dataSet.isHighlightEnabled = false
         dataSet.valueTextSize = 10f
         // Màu số liệu theo từng cột: vượt mục tiêu -> đỏ, dưới -> xanh
         dataSet.setValueTextColors(overFlags.map { over -> if (over) labelOver else labelUnder })
@@ -203,9 +212,28 @@ class HistoryFragment : Fragment() {
             override fun getFormattedValue(value: Float): String = fmtCal(value.toDouble())
         }
 
-        val barData = BarData(dataSet)
-        barData.barWidth = 0.7f
         val chart = binding.chartWeekly
+        val leftAxis = chart.axisLeft
+        leftAxis.removeAllLimitLines()
+        val limitColor = ContextCompat.getColor(context, R.color.proto_primary)
+        val targetLine = com.github.mikephil.charting.components.LimitLine(
+            targetCalories.toFloat(),
+            "${fmtCal(targetCalories.toDouble())} ${getString(R.string.unit_kcal)}"
+        ).apply {
+            lineWidth = 1.2f
+            lineColor = androidx.core.graphics.ColorUtils.setAlphaComponent(limitColor, 0xB5)
+            enableDashedLine(12f, 8f, 0f)
+            labelPosition = com.github.mikephil.charting.components.LimitLine.LimitLabelPosition.RIGHT_TOP
+            textSize = 9.5f
+            textColor = limitColor
+        }
+        leftAxis.addLimitLine(targetLine)
+        leftAxis.setDrawLimitLinesBehindData(true)
+        val maxBar = entries.maxOfOrNull { it.y } ?: 0f
+        leftAxis.axisMaximum = kotlin.math.max(maxBar, targetCalories.toFloat()) * 1.18f
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.62f
         chart.data = barData
         chart.setFitBars(true)
         chart.invalidate()

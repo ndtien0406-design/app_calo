@@ -125,11 +125,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="52dp"
                         android:layout_marginStart="@dimen/space_12"
+                        android:background="@drawable/bg_btn_primary_softtech"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:minWidth="96dp"
                         android:stateListAnimator="@animator/uiverse_press_scale"
                         android:text="@string/save"
+                        android:textColor="?attr/colorOnPrimary"
+                        app:backgroundTint="@null"
                         app:cornerRadius="26dp" />
                 </LinearLayout>
 

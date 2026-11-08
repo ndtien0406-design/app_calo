@@ -256,11 +256,20 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
     private fun parsePortion(): Double =
         _binding?.etPortion?.text?.toString()?.trim()?.replace(',', '.')?.toDoubleOrNull() ?: 0.0
 
-    /** Nút −/+ bước 0,5, không cho xuống dưới 0,5. */
+    /** Nút −/+ bước 0,5, không cho xuống dưới 0,5 + phản hồi xúc giác & nhịp nảy trên thẻ tổng calo. */
     private fun stepPortion(delta: Double) {
         val b = _binding ?: return
+        b.root.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK)
         val next = ((parsePortion() + delta) * 2).toInt() / 2.0
         b.etPortion.setText(fmtCal(next.coerceAtLeast(0.5)))
+        b.tvComputedCalories.animate().cancel()
+        b.tvComputedCalories.scaleX = 1.04f
+        b.tvComputedCalories.scaleY = 1.04f
+        b.tvComputedCalories.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(150L)
+            .start()
     }
 
     private var portionStrokeDefault: Int? = null

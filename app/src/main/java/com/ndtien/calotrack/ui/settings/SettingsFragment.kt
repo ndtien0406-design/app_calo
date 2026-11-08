@@ -68,6 +68,7 @@ class SettingsFragment : Fragment() {
         )
         binding.switchDarkMode.setOnCheckedChangeListener { switchView, checked ->
             if (prefs.darkMode == checked) return@setOnCheckedChangeListener
+            switchView.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK)
             prefs.darkMode = checked
             binding.ivThemeIcon.animate().cancel()
             binding.ivThemeIcon.animate()
