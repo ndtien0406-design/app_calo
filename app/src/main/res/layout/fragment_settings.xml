@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Cài đặt: 3 nhóm Mục tiêu · Giao diện · Thông tin (đơn vị, phiên bản chỉ để xem). -->
+<!-- Cài đặt: 3 nhóm Mục tiêu · Giao diện · Thông tin (icon Lucide bên trái theo chuẩn bộ não CT999). -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -35,20 +35,44 @@
                 android:orientation="vertical"
                 android:padding="@dimen/space_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/target_label"
-                    android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/goal_desc"
-                    android:textAppearance="?attr/textAppearanceBodySmall"
-                    android:textColor="?attr/colorOnSurfaceVariant" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_date_block"
+                        android:importantForAccessibility="no"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="?attr/colorPrimary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_12"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/target_label"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/goal_desc"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,22 +115,12 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
-            android:paddingStart="@dimen/space_4"
-            android:paddingEnd="@dimen/space_4"
-            android:text="@string/settings_note"
-            android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textColor="?attr/colorOnSurfaceVariant" />
-
         <!-- ===== Giao diện ===== -->
         <TextView
             style="@style/Widget.CaloTrack.SectionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_24"
+            android:layout_marginTop="@dimen/space_20"
             android:text="@string/section_appearance" />
 
         <com.google.android.material.card.MaterialCardView
@@ -126,9 +140,19 @@
                 android:paddingStart="@dimen/space_16"
                 android:paddingEnd="@dimen/space_12">
 
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_date_block"
+                    android:importantForAccessibility="no"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_moon"
+                    app:tint="?attr/colorPrimary" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_12"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -161,7 +185,7 @@
             style="@style/Widget.CaloTrack.SectionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_24"
+            android:layout_marginTop="@dimen/space_20"
             android:text="@string/section_info" />
 
         <com.google.android.material.card.MaterialCardView
@@ -185,9 +209,17 @@
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_flame"
+                        app:tint="?attr/colorOnSurfaceVariant" />
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_12"
                         android:layout_weight="1"
                         android:text="@string/unit_label"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
@@ -204,7 +236,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginStart="@dimen/space_16"
+                    android:layout_marginStart="48dp"
                     android:layout_marginEnd="@dimen/space_16"
                     android:background="?attr/colorOutlineVariant" />
 
@@ -216,9 +248,17 @@
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_info"
+                        app:tint="?attr/colorOnSurfaceVariant" />
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_12"
                         android:layout_weight="1"
                         android:text="@string/label_version"
                         android:textAppearance="?attr/textAppearanceBodyLarge"
