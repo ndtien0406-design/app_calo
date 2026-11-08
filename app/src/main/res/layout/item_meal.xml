@@ -1,117 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Một bữa ăn: vạch màu loại bữa | tên món + calo | nhãn bữa, giờ · khẩu phần, nút Sửa / Xóa (48dp). -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="@dimen/space_8"
     app:cardBackgroundColor="?attr/colorSurfaceContainer"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="0dp">
+    app:cardCornerRadius="@dimen/radius_card"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="13dp">
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/view_meal_type_accent"
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/space_12"
+            android:background="@drawable/bg_accent_bar" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_meal_food_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/tv_meal_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="12sp" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/space_12"
+            android:paddingTop="@dimen/space_12"
+            android:paddingEnd="@dimen/space_4">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:baselineAligned="true"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/space_12">
+
+                <TextView
+                    android:id="@+id/tv_meal_food_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/tv_meal_calories"
+                    style="@style/Widget.CaloTrack.Number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_12" />
+
+                <TextView
+                    style="@style/Widget.CaloTrack.Unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <Button
+                <TextView
+                    android:id="@+id/tv_meal_type_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_pill"
+                    android:paddingStart="@dimen/space_8"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="@dimen/space_8"
+                    android:paddingBottom="2dp"
+                    android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+                <TextView
+                    android:id="@+id/tv_meal_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFeatureSettings="tnum"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_edit_meal"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.CaloTrack.IconButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="-6dp"
-                    android:drawableStart="@drawable/ic_edit"
-                    android:drawablePadding="5dp"
-                    android:minWidth="0dp"
-                    android:paddingStart="6dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/edit"
-                    android:textColor="?attr/colorPrimary"
-                    android:textSize="12sp" />
+                    android:contentDescription="@string/edit"
+                    app:icon="@drawable/ic_edit" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_delete_meal"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/Widget.CaloTrack.IconButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="0dp"
-                    android:padding="4dp"
-                    android:text="@string/delete"
-                    android:textColor="?attr/colorError"
-                    android:textSize="12sp" />
+                    android:contentDescription="@string/delete"
+                    app:icon="@drawable/ic_delete" />
             </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_meal_type_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_tag_pill"
-            android:paddingStart="8dp"
-            android:paddingTop="3dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="3dp"
-            android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_meal_calories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/unit_kcal"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="11sp" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

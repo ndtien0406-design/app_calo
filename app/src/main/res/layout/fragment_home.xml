@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:paddingStart="@dimen/screen_padding"
+    android:paddingTop="@dimen/space_4"
+    android:paddingEnd="@dimen/screen_padding">
 
-    <!-- Thẻ tổng quan kiểu bản xem thử: số lớn + mục tiêu + thanh tiến trình -->
+    <!-- Thẻ tổng quan: số đã ăn (lớn) | mục tiêu, thanh tiến trình, còn lại/vượt + % mục tiêu.
+         Màu thẻ đổi theo trạng thái (xanh dưới mục tiêu, đỏ khi vượt) trong HomeFragment. -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_overview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="@dimen/radius_hero"
         app:cardElevation="0dp"
+        app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,12 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="@dimen/space_20">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -34,102 +38,113 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tv_eaten_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.85"
+                        android:text="@string/eaten_today"
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_eaten_big"
+                            style="@style/Widget.CaloTrack.Number.Hero"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="42sp"
-                            android:textStyle="bold" />
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/tv_eaten_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
-                            android:layout_marginBottom="6dp"
+                            android:layout_marginBottom="5dp"
+                            android:alpha="0.85"
                             android:text="@string/unit_kcal"
-                            android:textSize="14sp" />
+                            android:textAppearance="?attr/textAppearanceBodyMedium" />
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:alpha="0.8"
-                        android:id="@+id/tv_eaten_label"
-                        android:text="@string/eaten_today"
-                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha="0.85"
                     android:gravity="end"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_target_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:alpha="0.85"
                         android:text="@string/label_target"
-                        android:textSize="13sp" />
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:gravity="bottom"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_target_big"
+                            style="@style/Widget.CaloTrack.Number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="20sp" />
 
                         <TextView
+                            android:id="@+id/tv_target_unit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginStart="@dimen/space_4"
+                            android:layout_marginBottom="2dp"
+                            android:alpha="0.85"
                             android:text="@string/unit_kcal"
-                            android:textSize="13sp" />
+                            android:textAppearance="?attr/textAppearanceBodySmall" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:max="100"
+                app:trackCornerRadius="5dp"
+                app:trackThickness="10dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_progress_track"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <View
-                    android:id="@+id/view_progress_fill"
+                <TextView
+                    android:id="@+id/tv_remain_label"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:background="@drawable/bg_progress_fill" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFeatureSettings="tnum"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:textStyle="bold" />
 
-                <Space
-                    android:id="@+id/space_progress_rest"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.85"
+                    android:fontFeatureSettings="tnum"
+                    android:textAppearance="?attr/textAppearanceLabelLarge" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_remain_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -138,7 +153,7 @@
         android:id="@+id/day_nav_row"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/space_12"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -147,12 +162,12 @@
 
         <ImageButton
             android:id="@+id/btn_prev_day"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/touch_target"
+            android:layout_height="@dimen/touch_target"
             android:background="@drawable/bg_circle_tonal"
             android:contentDescription="@string/prev_day"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:padding="10dp"
+            android:padding="12dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_chevron_left"
             app:tint="?attr/colorOnSecondaryContainer" />
@@ -160,24 +175,29 @@
         <TextView
             android:id="@+id/tv_day_label"
             android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="@dimen/touch_target"
+            android:layout_marginStart="@dimen/space_8"
+            android:layout_marginEnd="@dimen/space_8"
             android:layout_weight="1"
             android:background="@drawable/bg_search_field"
+            android:drawablePadding="@dimen/space_8"
+            android:ellipsize="end"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:maxLines="1"
+            android:paddingStart="@dimen/space_12"
+            android:paddingEnd="@dimen/space_12"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorOnSurface" />
 
         <ImageButton
             android:id="@+id/btn_next_day"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/touch_target"
+            android:layout_height="@dimen/touch_target"
             android:background="@drawable/bg_circle_tonal"
             android:contentDescription="@string/next_day"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:padding="10dp"
+            android:padding="12dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_chevron_right"
             app:tint="?attr/colorOnSecondaryContainer" />
@@ -187,7 +207,7 @@
         android:id="@+id/meals_header_row"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/space_16"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -196,34 +216,40 @@
 
         <TextView
             android:id="@+id/tv_meals_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginStart="@dimen/space_4"
             android:text="@string/meals_of_day"
-            android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorOnSurface"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_meals_count"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:textSize="14sp" />
+            android:layout_marginStart="@dimen/space_8"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant" />
 
+        <!-- Chỉ hiện khi đang lọc (HomeFragment.refreshFilterUi) -->
         <Button
             android:id="@+id/btn_clear_filter"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/filter_all" />
+            android:text="@string/clear_filter_short"
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/btn_filter_meals"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/touch_target"
+            android:layout_height="@dimen/touch_target"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/filter_meals"
-            android:src="@drawable/ic_filter" />
+            android:src="@drawable/ic_filter"
+            app:tint="?attr/colorOnSurfaceVariant" />
     </LinearLayout>
 
     <com.google.android.material.chip.ChipGroup
@@ -236,13 +262,13 @@
         app:layout_constraintTop_toBottomOf="@id/meals_header_row" />
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/rv_meals"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/space_8"
         android:clipToPadding="false"
-        android:paddingBottom="88dp"
+        android:paddingBottom="96dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -250,16 +276,16 @@
 
     <TextView
         android:id="@+id/tv_empty_meals"
-        android:alpha="0.7"
-        android:drawablePadding="12dp"
-        android:drawableTint="?attr/colorOnSurfaceVariant"
-        android:drawableTop="@drawable/ic_food"
-        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/space_12"
+        android:drawableTop="@drawable/ic_food"
+        android:drawableTint="?attr/colorOnSurfaceVariant"
         android:gravity="center"
         android:padding="32dp"
         android:text="@string/no_meals"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -270,7 +296,7 @@
         android:id="@+id/fab_add_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/space_16"
         android:contentDescription="@string/add_meal"
         android:src="@drawable/ic_add"
         app:backgroundTint="?attr/colorPrimary"

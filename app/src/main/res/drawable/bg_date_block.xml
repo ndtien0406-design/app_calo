@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Khối thứ/ngày trong danh sách Lịch sử (bo góc vừa, không phải pill). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="12dp" />
+    <solid android:color="?attr/colorSecondaryContainer" />
+</shape>
+

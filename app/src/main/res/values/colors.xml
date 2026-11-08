@@ -36,4 +36,10 @@
     <color name="meal_dinner_fg">#0B3A66</color>
     <color name="meal_snack_bg">#EBDDFF</color>
     <color name="meal_snack_fg">#3B2A5C</color>
+
+    <!-- Vạch màu đầu thẻ bữa ăn (tông giữa, đủ nổi trên nền sáng) -->
+    <color name="meal_breakfast_accent">#D98A1C</color>
+    <color name="meal_lunch_accent">#2E9E5B</color>
+    <color name="meal_dinner_accent">#3A74C9</color>
+    <color name="meal_snack_accent">#8360C3</color>
 </resources>
