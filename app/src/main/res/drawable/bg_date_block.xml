@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Khối thứ/ngày trong danh sách Lịch sử (bo góc vừa, không phải pill). -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <corners android:radius="12dp" />
-    <solid android:color="?attr/colorSecondaryContainer" />
-</shape>
-
+<!-- Huy hiệu đựng icon 40dp & khối ngày Lịch sử: vát sáng đỉnh 1dp + chuyển sắc dọc 180° (CT999 alodev-soft-tech) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <solid android:color="@color/card_rim_top" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/badge_grad_bottom"
+                android:startColor="@color/badge_grad_top"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

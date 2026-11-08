@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Ô tìm kiếm / chọn ngày kiểu Uiverse.io: không viền tĩnh lúc nghỉ (R1), sáng viền màu chủ đạo khi focus/chạm -->
+<!-- Rãnh chìm (Inset Well) cho thanh tìm kiếm thực phẩm + viền phát sáng Uiverse khi focus -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_activated="true">
         <shape android:shape="rectangle">
-            <solid android:color="?attr/colorSurfaceContainerHigh" />
-            <corners android:radius="14dp" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/inset_well_bottom"
+                android:startColor="@color/inset_well_top"
+                android:type="linear" />
             <stroke
                 android:width="1.5dp"
                 android:color="?attr/colorPrimary" />
+            <corners android:radius="999dp" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="?attr/colorSurfaceContainerHigh" />
-            <corners android:radius="14dp" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/inset_well_bottom"
+                android:startColor="@color/inset_well_top"
+                android:type="linear" />
             <stroke
                 android:width="1.5dp"
                 android:color="?attr/colorPrimary" />
+            <corners android:radius="999dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="?attr/colorSurfaceVariant" />
-            <corners android:radius="14dp" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/inset_well_bottom"
+                android:startColor="@color/inset_well_top"
+                android:type="linear" />
+            <corners android:radius="999dp" />
         </shape>
     </item>
 </selector>

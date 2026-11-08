@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface">
 
+    <!-- Tầng 0: Nền trang Ambient Radial Mesh Glow + Micro Dot-Matrix -->
+    <com.ndtien.calotrack.UiverseAmbientBgView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <!-- Cụm trung tâm: Vòng xoay kép Uiverse + Sóng xung Sonar + Logo + Thương hiệu -->
     <LinearLayout
         android:layout_width="wrap_content"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Thẻ nổi vát sáng đỉnh (Top Rim Light 1dp + Gradient dọc 180° theo chuẩn CT999 alodev-soft-tech & R1) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Lớp 0: Vệt sáng Rim Light 1dp ở mép đỉnh giả lập ánh sáng chiếu từ trên xuống -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_card" />
+            <solid android:color="@color/card_rim_top" />
+        </shape>
+    </item>
+    <!-- Lớp 1: Mặt thẻ chuyển sắc dọc 180° (đỉnh sáng -> đáy trầm), không viền hai bên và đáy -->
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_card" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/card_grad_bottom"
+                android:startColor="@color/card_grad_top"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

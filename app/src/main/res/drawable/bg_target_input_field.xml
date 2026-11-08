@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Rãnh chìm (Inset Well) cho ô nhập mục tiêu calo + viền phát sáng Uiverse khi focus -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_activated="true">
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/transparent" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/inset_well_bottom"
+                android:startColor="@color/inset_well_top"
+                android:type="linear" />
             <stroke
                 android:width="1.5dp"
                 android:color="?attr/colorPrimary" />
@@ -11,10 +16,14 @@
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/transparent" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/inset_well_bottom"
+                android:startColor="@color/inset_well_top"
+                android:type="linear" />
             <stroke
                 android:width="1dp"
-                android:color="?attr/colorOutline" />
+                android:color="?attr/colorOutlineVariant" />
             <corners android:radius="@dimen/radius_field" />
         </shape>
     </item>

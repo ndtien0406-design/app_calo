@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Thẻ lớn bo góc 24dp (Biểu đồ tuần) với Top Rim Light 1dp + Gradient dọc 180° -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_hero" />
+            <solid android:color="@color/card_rim_top" />
+        </shape>
+    </item>
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_hero" />
+            <gradient
+                android:angle="270"
+                android:endColor="@color/card_grad_bottom"
+                android:startColor="@color/card_grad_top"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
-    android:orientation="vertical">
+    android:background="?attr/colorSurface">
 
-    <!-- App bar: logo + tên app + tên tab | pill ngày (ẩn ở Trang chủ vì đã có hàng chọn ngày).
-         Lề ngang = screen_padding để thẳng hàng với nội dung bên dưới. -->
+    <!-- Tầng 0: Nền trang Ambient Radial Mesh Glow + Micro Dot-Matrix (Uiverse x CT999) -->
+    <com.ndtien.calotrack.UiverseAmbientBgView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- App bar: logo + tên app + tên tab | pill ngày (ẩn ở Trang chủ vì đã có hàng chọn ngày).
+             Lề ngang = screen_padding để thẳng hàng với nội dung bên dưới. -->
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:gravity="center_vertical"
@@ -107,4 +116,5 @@
             android:background="@drawable/bg_nav_glow_pill" />
     </FrameLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

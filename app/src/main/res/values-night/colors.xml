@@ -49,4 +49,18 @@
     <color name="hero_over_start">#9E0B18</color>
     <color name="hero_over_center">#820712</color>
     <color name="hero_over_end">#63040D</color>
+
+    <!-- Hệ thống nền 4 tầng ánh sáng (Uiverse.io x CT999 alodev-soft-tech, Dark) -->
+    <color name="ambient_glow_top">#2434D399</color>
+    <color name="ambient_glow_bottom">#1A14B8A6</color>
+    <color name="ambient_dot_color">#147DD89A</color>
+    <color name="card_grad_top">#1F2822</color>
+    <color name="card_grad_bottom">#161C18</color>
+    <color name="card_rim_top">#28A7F3D0</color>
+    <color name="badge_grad_top">#33453A</color>
+    <color name="badge_grad_bottom">#25332A</color>
+    <color name="inset_well_top">#0C100D</color>
+    <color name="inset_well_bottom">#131814</color>
+    <color name="hero_orb_under">#2A7DD89A</color>
+    <color name="hero_orb_over">#2AFF9D97</color>
 </resources>
