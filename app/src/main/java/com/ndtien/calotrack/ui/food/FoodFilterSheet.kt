@@ -139,6 +139,16 @@ class FoodFilterSheet : BottomSheetDialogFragment() {
         dismiss()
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.let { sheet ->
+            com.google.android.material.bottomsheet.BottomSheetBehavior.from(sheet).apply {
+                state = com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
+                skipCollapsed = true
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

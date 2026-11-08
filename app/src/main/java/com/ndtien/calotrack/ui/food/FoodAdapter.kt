@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ndtien.calotrack.R
 import com.ndtien.calotrack.data.Food
 import com.ndtien.calotrack.databinding.ItemFoodBinding
+import com.ndtien.calotrack.util.FoodImageLoader
 
 /**
  * Adapter hiển thị danh sách thực phẩm (item_food.xml kiểu thẻ nổi Soft-Tech).
@@ -39,6 +40,7 @@ class FoodAdapter(
             val context = binding.root.context
             binding.tvFoodName.text = food.name
             binding.tvFoodCategory.text = food.category
+            FoodImageLoader.loadInto(binding.ivFoodThumb, food.name, food.category)
             // Kiểu bản xem thử: "550" + "kcal / suất"
             binding.tvFoodCalories.text = fmtCal(food.caloriesPerServing)
             binding.tvFoodUnit.text =

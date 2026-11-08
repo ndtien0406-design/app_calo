@@ -73,5 +73,11 @@
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
     </style>
+
+    <!-- Khung ảnh món ăn bo góc 14dp kiểu Soft-Tech -->
+    <style name="ShapeAppearance.CaloTrack.FoodThumb" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
 </resources>
 

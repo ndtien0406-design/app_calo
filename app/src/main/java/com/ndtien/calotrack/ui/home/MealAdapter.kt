@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ndtien.calotrack.R
 import com.ndtien.calotrack.data.MealEntry
 import com.ndtien.calotrack.databinding.ItemMealBinding
+import com.ndtien.calotrack.util.FoodImageLoader
 
 class MealAdapter(
     private val onEdit: (MealEntry) -> Unit,
@@ -44,6 +45,7 @@ class MealAdapter(
         fun bind(meal: MealEntry) {
             val context = binding.root.context
             binding.tvMealFoodName.text = meal.foodName
+            FoodImageLoader.loadInto(binding.ivMealThumb, meal.foodName)
             // Kiểu bản xem thử: "00:02 · 1 suất"
             binding.tvMealInfo.text = "${meal.time} · ${fmtCal(meal.portion)} ${context.getString(R.string.portion_unit_label)}"
             binding.tvMealCalories.text = fmtCal(meal.totalCalories)
