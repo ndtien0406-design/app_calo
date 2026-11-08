@@ -82,29 +82,42 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <LinearLayout
+                        android:id="@+id/target_input_container"
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
-                        app:boxCornerRadiusBottomEnd="@dimen/radius_field"
-                        app:boxCornerRadiusBottomStart="@dimen/radius_field"
-                        app:boxCornerRadiusTopEnd="@dimen/radius_field"
-                        app:boxCornerRadiusTopStart="@dimen/radius_field"
-                        app:hintEnabled="false"
-                        app:suffixText="kcal/ngày">
+                        android:background="@drawable/bg_target_input_field"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/space_16"
+                        android:paddingEnd="@dimen/space_16">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_target_calories"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
                             android:fontFeatureSettings="tnum"
                             android:gravity="center_vertical"
                             android:imeOptions="actionDone"
+                            android:includeFontPadding="false"
                             android:inputType="number"
                             android:maxLength="5"
-                            android:paddingTop="0dp"
-                            android:paddingBottom="0dp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:padding="0dp"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_8"
+                            android:includeFontPadding="false"
+                            android:text="kcal/ngày"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_save_target"
@@ -116,7 +129,7 @@
                         android:minWidth="96dp"
                         android:stateListAnimator="@animator/uiverse_press_scale"
                         android:text="@string/save"
-                        app:cornerRadius="@dimen/radius_field" />
+                        app:cornerRadius="26dp" />
                 </LinearLayout>
 
                 <TextView

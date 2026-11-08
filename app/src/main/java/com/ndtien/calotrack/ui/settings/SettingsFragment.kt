@@ -43,8 +43,16 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         prefs = PrefsManager(requireContext())
 
-        // Điền sẵn mục tiêu hiện tại
+        // Điền sẵn mục tiêu hiện tại + hiệu ứng viền sáng Uiverse khi focus
         binding.etTargetCalories.setText(prefs.targetCalories.toString())
+        binding.etTargetCalories.setOnFocusChangeListener { _, hasFocus ->
+            binding.targetInputContainer.isActivated = hasFocus
+        }
+        binding.targetInputContainer.setOnClickListener {
+            binding.etTargetCalories.requestFocus()
+            requireContext().getSystemService<InputMethodManager>()
+                ?.showSoftInput(binding.etTargetCalories, InputMethodManager.SHOW_IMPLICIT)
+        }
 
         binding.btnSaveTarget.setOnClickListener { saveTarget() }
         binding.etTargetCalories.setOnEditorActionListener { _, actionId, _ ->
