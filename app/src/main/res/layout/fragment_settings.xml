@@ -110,6 +110,7 @@
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:minWidth="88dp"
+                        android:stateListAnimator="@animator/uiverse_press_scale"
                         android:text="@string/save" />
                 </LinearLayout>
             </LinearLayout>
@@ -141,6 +142,7 @@
                 android:paddingEnd="@dimen/space_12">
 
                 <ImageView
+                    android:id="@+id/iv_theme_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/bg_date_block"
@@ -176,7 +178,8 @@
                     android:id="@+id/switch_dark_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/dark_mode" />
+                    android:contentDescription="@string/dark_mode"
+                    app:thumbIcon="@drawable/selector_switch_thumb_icon" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

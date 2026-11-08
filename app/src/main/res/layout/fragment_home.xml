@@ -21,8 +21,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/layout_hero_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_hero_under"
             android:orientation="vertical"
             android:padding="@dimen/space_20">
 
@@ -170,6 +172,7 @@
             android:padding="12dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_chevron_left"
+            android:stateListAnimator="@animator/uiverse_press_scale"
             app:tint="?attr/colorOnSecondaryContainer" />
 
         <TextView
@@ -187,6 +190,7 @@
             android:maxLines="1"
             android:paddingStart="@dimen/space_12"
             android:paddingEnd="@dimen/space_12"
+            android:stateListAnimator="@animator/uiverse_press_scale"
             android:textAppearance="?attr/textAppearanceLabelLarge"
             android:textColor="?attr/colorOnSurface" />
 
@@ -200,6 +204,7 @@
             android:padding="12dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_chevron_right"
+            android:stateListAnimator="@animator/uiverse_press_scale"
             app:tint="?attr/colorOnSecondaryContainer" />
     </LinearLayout>
 
@@ -299,6 +304,7 @@
         android:layout_marginBottom="@dimen/space_16"
         android:contentDescription="@string/add_meal"
         android:src="@drawable/ic_add"
+        android:stateListAnimator="@animator/uiverse_press_scale"
         app:backgroundTint="?attr/colorPrimary"
         app:tint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

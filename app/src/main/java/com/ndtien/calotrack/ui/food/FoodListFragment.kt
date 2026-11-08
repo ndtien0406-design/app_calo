@@ -79,6 +79,9 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
             }
         )
 
+        binding.etSearchFood.setOnFocusChangeListener { _, hasFocus ->
+            binding.searchBarContainer.isActivated = hasFocus
+        }
         binding.etSearchFood.doOnTextChanged { text, _, _, _ ->
             currentQuery = text?.toString().orEmpty()
             applyFilter()

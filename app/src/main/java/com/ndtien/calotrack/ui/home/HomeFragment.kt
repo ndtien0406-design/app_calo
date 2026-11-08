@@ -330,16 +330,15 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
             "${getString(R.string.label_over)} ${fmtCal(-remaining)} ${getString(R.string.unit_kcal)}"
         }
 
-        // Màu thẻ + chữ + thanh tiến trình theo trạng thái vượt/dưới mục tiêu
-        val cardColor = ContextCompat.getColor(
-            context,
-            if (over) R.color.proto_error_container else R.color.proto_primary_container
-        )
+        // Màu thẻ gradient 135° kiểu Uiverse + chữ + thanh tiến trình theo trạng thái vượt/dưới mục tiêu
         val onCardColor = ContextCompat.getColor(
             context,
             if (over) R.color.proto_error else R.color.proto_on_primary_container
         )
-        b.cardOverview.setCardBackgroundColor(cardColor)
+        b.cardOverview.setCardBackgroundColor(android.graphics.Color.TRANSPARENT)
+        b.layoutHeroBg.setBackgroundResource(
+            if (over) R.drawable.bg_hero_over else R.drawable.bg_hero_under
+        )
         listOf(
             b.tvEatenBig, b.tvEatenUnit, b.tvEatenLabel, b.tvTargetBig, b.tvTargetUnit,
             b.tvTargetLabel, b.tvRemainLabel, b.tvPercent

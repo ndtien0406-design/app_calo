@@ -19,6 +19,7 @@
             android:paddingEnd="@dimen/space_8">
 
             <LinearLayout
+                android:id="@+id/search_bar_container"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/touch_target"
                 android:layout_weight="1"
@@ -126,6 +127,7 @@
         android:layout_margin="@dimen/space_16"
         android:contentDescription="@string/add_food"
         android:src="@drawable/ic_add"
+        android:stateListAnimator="@animator/uiverse_press_scale"
         app:backgroundTint="?attr/colorPrimary"
         app:tint="?attr/colorOnPrimary" />
 

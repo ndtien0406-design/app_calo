@@ -41,4 +41,12 @@
     <color name="meal_lunch_accent">#7DD89A</color>
     <color name="meal_dinner_accent">#86B4F5</color>
     <color name="meal_snack_accent">#B9A0EE</color>
+
+    <!-- Gradient thẻ tổng quan kiểu Uiverse.io (Dark mode) -->
+    <color name="hero_under_start">#065E30</color>
+    <color name="hero_under_center">#044B26</color>
+    <color name="hero_under_end">#03381B</color>
+    <color name="hero_over_start">#9E0B18</color>
+    <color name="hero_over_center">#820712</color>
+    <color name="hero_over_end">#63040D</color>
 </resources>

@@ -55,8 +55,14 @@ class SettingsFragment : Fragment() {
         }
 
         binding.switchDarkMode.isChecked = prefs.darkMode
+        binding.ivThemeIcon.setImageResource(
+            if (prefs.darkMode) R.drawable.ic_moon else R.drawable.ic_sun
+        )
         binding.switchDarkMode.setOnCheckedChangeListener { _, checked ->
             prefs.darkMode = checked
+            binding.ivThemeIcon.setImageResource(
+                if (checked) R.drawable.ic_moon else R.drawable.ic_sun
+            )
             // setDefaultNightMode tự dựng lại Activity khi chế độ đổi; gọi thêm recreate()
             // sẽ dựng lại 2 lần (màn hình nháy) nên không gọi nữa.
             AppCompatDelegate.setDefaultNightMode(

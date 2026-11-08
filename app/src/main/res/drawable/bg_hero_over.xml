@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nền gradient chéo 135° kiểu Uiverse.io cho thẻ tổng quan vượt mục tiêu -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="@dimen/radius_hero" />
+    <gradient
+        android:angle="315"
+        android:centerColor="@color/hero_over_center"
+        android:endColor="@color/hero_over_end"
+        android:startColor="@color/hero_over_start"
+        android:type="linear" />
+</shape>
+

@@ -87,6 +87,16 @@ class HistoryAdapter(
         val (date, total) = getItem(position)
         holder.bind(date, total)
         holder.itemView.setOnClickListener { onDayClick(date) }
+        holder.itemView.apply {
+            alpha = 0f
+            translationY = 18f
+            animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(180L)
+                .setInterpolator(android.view.animation.DecelerateInterpolator())
+                .start()
+        }
     }
 }
 

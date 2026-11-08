@@ -23,6 +23,16 @@ class MealAdapter(
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.apply {
+            alpha = 0f
+            translationY = 18f
+            animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(180L)
+                .setInterpolator(android.view.animation.DecelerateInterpolator())
+                .start()
+        }
     }
 
     class MealViewHolder(
@@ -62,6 +72,7 @@ class MealAdapter(
             binding.viewMealTypeAccent.backgroundTintList =
                 ColorStateList.valueOf(ContextCompat.getColor(context, accentRes))
 
+            binding.root.setOnClickListener { onEdit(meal) }
             binding.btnEditMeal.setOnClickListener { onEdit(meal) }
             binding.btnDeleteMeal.setOnClickListener { onDelete(meal) }
         }
