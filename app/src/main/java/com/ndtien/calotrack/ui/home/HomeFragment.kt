@@ -77,6 +77,7 @@ class HomeFragment : Fragment(), MealDialogCallback, MealFilterSheet.Listener {
         viewModel.totalCalories.observe(viewLifecycleOwner) { updateOverview() }
         viewModel.targetCalories.observe(viewLifecycleOwner) { updateOverview() }
 
+        binding.fabAddMeal.bindToScreen(binding.rvMeals, childFragmentManager)
         binding.fabAddMeal.setOnClickListener {
             val date = viewModel.selectedDate.value ?: DateUtils.today()
             // Dùng childFragmentManager để dialog gọi được (parentFragment as? MealDialogCallback)

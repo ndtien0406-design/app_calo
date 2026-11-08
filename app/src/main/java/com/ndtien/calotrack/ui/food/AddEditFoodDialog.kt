@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
@@ -12,6 +13,7 @@ import com.ndtien.calotrack.data.AppDatabase
 import com.ndtien.calotrack.data.Food
 import com.ndtien.calotrack.data.FoodCategories
 import com.ndtien.calotrack.databinding.DialogAddEditFoodBinding
+import com.ndtien.calotrack.util.FoodImageLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -63,6 +65,9 @@ class AddEditFoodDialog : BottomSheetDialogFragment() {
         binding.tvFoodDialogTitle.setText(if (isEdit) R.string.edit_food else R.string.add_food)
         binding.btnSaveFood.setText(if (isEdit) R.string.save else R.string.add)
         buildCategoryChips(FoodCategories.DEFAULT)
+        updatePreviewThumb()
+        binding.etFoodName.doOnTextChanged { _, _, _, _ -> updatePreviewThumb() }
+        binding.chipFoodCategory.setOnCheckedStateChangeListener { _, _ -> updatePreviewThumb() }
 
         if (isEdit) {
             // Chế độ sửa: tải thực phẩm theo id rồi điền vào form
@@ -102,6 +107,12 @@ class AddEditFoodDialog : BottomSheetDialogFragment() {
         val group = binding.chipFoodCategory
         val chip = group.findViewById<Chip>(group.checkedChipId)
         return chip?.text?.toString() ?: FoodCategories.DEFAULT
+    }
+
+    private fun updatePreviewThumb() {
+        val b = _binding ?: return
+        val name = b.etFoodName.text?.toString().orEmpty()
+        FoodImageLoader.loadInto(b.ivFoodDialogPreview, name, selectedCategory())
     }
 
     private fun saveFood() {

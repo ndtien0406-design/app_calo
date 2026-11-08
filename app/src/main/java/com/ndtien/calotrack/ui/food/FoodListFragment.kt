@@ -80,6 +80,7 @@ class FoodListFragment : Fragment(), FoodDialogCallback, FoodFilterSheet.Listene
                 .show(childFragmentManager, "filter_foods")
         }
 
+        binding.fabAddFood.bindToScreen(binding.rvFoods, childFragmentManager)
         binding.fabAddFood.setOnClickListener {
             AddEditFoodDialog.newInstance()
                 .show(childFragmentManager, "add_edit_food")

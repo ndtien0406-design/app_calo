@@ -120,3 +120,4 @@ class UiverseCalorieRingView @JvmOverloads constructor(
         canvas.drawText(label, w / 2f, baselineY, textPaint)
     }
 }
+

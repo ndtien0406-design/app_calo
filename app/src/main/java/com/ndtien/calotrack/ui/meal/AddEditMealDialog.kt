@@ -23,6 +23,7 @@ import com.ndtien.calotrack.data.MealDao
 import com.ndtien.calotrack.data.MealEntry
 import com.ndtien.calotrack.databinding.DialogAddEditMealBinding
 import com.ndtien.calotrack.util.DateUtils
+import com.ndtien.calotrack.util.FoodImageLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -91,7 +92,7 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
 
         binding.cbQuickEntry.setOnCheckedChangeListener { _, checked ->
             binding.layoutQuickEntry.visibility = if (checked) View.VISIBLE else View.GONE
-            binding.tilFood.visibility = if (checked) View.GONE else View.VISIBLE
+            binding.rowFoodPicker.visibility = if (checked) View.GONE else View.VISIBLE
             binding.tilFood.error = null
             updateComputedCalories()
         }
@@ -101,6 +102,7 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
         binding.btnPortionPlus.setOnClickListener { stepPortion(0.5) }
 
         binding.etPortion.doOnTextChanged { _, _, _, _ -> updateComputedCalories() }
+        binding.etQuickName.doOnTextChanged { _, _, _, _ -> updateComputedCalories() }
         binding.etQuickCalories.doOnTextChanged { _, _, _, _ -> updateComputedCalories() }
         binding.actvFood.doOnTextChanged { text, _, _, _ ->
             // User gõ tay không khớp món nào -> coi như chưa chọn
@@ -231,8 +233,10 @@ class AddEditMealDialog : BottomSheetDialogFragment() {
         }
         val total = calPerServing * portion
 
-        // Đơn vị khẩu phần + dòng calo/khẩu phần dưới ô chọn món (theo bản xem thử)
+        // Đơn vị khẩu phần + dòng calo/khẩu phần dưới ô chọn món + ảnh đại diện món đang chọn
         val food = if (b.cbQuickEntry.isChecked) null else selectedFood
+        val previewName = food?.name ?: b.etQuickName.text?.toString().orEmpty()
+        FoodImageLoader.loadInto(b.ivMealFoodPreview, previewName, food?.category)
         b.tvPortionUnit.text = food?.servingUnit ?: getString(R.string.default_unit)
         b.tilFood.helperText = food?.let {
             "${fmtCal(it.caloriesPerServing)} ${getString(R.string.unit_kcal)} / ${it.servingUnit}"
