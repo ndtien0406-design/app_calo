@@ -58,17 +58,33 @@ class SettingsFragment : Fragment() {
         binding.ivThemeIcon.setImageResource(
             if (prefs.darkMode) R.drawable.ic_moon else R.drawable.ic_sun
         )
-        binding.switchDarkMode.setOnCheckedChangeListener { _, checked ->
+        binding.switchDarkMode.setOnCheckedChangeListener { switchView, checked ->
+            if (prefs.darkMode == checked) return@setOnCheckedChangeListener
             prefs.darkMode = checked
-            binding.ivThemeIcon.setImageResource(
-                if (checked) R.drawable.ic_moon else R.drawable.ic_sun
-            )
-            // setDefaultNightMode tự dựng lại Activity khi chế độ đổi; gọi thêm recreate()
-            // sẽ dựng lại 2 lần (màn hình nháy) nên không gọi nữa.
-            AppCompatDelegate.setDefaultNightMode(
-                if (checked) AppCompatDelegate.MODE_NIGHT_YES
-                else AppCompatDelegate.MODE_NIGHT_NO
-            )
+            binding.ivThemeIcon.animate().cancel()
+            binding.ivThemeIcon.animate()
+                .rotationBy(180f)
+                .scaleX(0.75f)
+                .scaleY(0.75f)
+                .setDuration(110L)
+                .withEndAction {
+                    _binding?.ivThemeIcon?.setImageResource(
+                        if (checked) R.drawable.ic_moon else R.drawable.ic_sun
+                    )
+                    _binding?.ivThemeIcon?.animate()
+                        ?.scaleX(1f)
+                        ?.scaleY(1f)
+                        ?.setDuration(110L)
+                        ?.start()
+                }
+                .start()
+
+            // Chờ nút gạt trượt xong (140ms) rồi chuyển giao diện bằng sóng tròn Circular Reveal không khựng
+            switchView.postDelayed({
+                if (!isAdded) return@postDelayed
+                (activity as? com.ndtien.calotrack.MainActivity)
+                    ?.switchThemeSmoothly(checked, switchView)
+            }, 140L)
         }
 
         // Thông tin chỉ để xem: đơn vị lưu trong SharedPreferences, phiên bản lấy từ gói cài đặt

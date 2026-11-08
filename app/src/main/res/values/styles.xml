@@ -63,5 +63,15 @@
     <style name="Widget.CaloTrack.BottomNavActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">?attr/colorSecondaryContainer</item>
     </style>
+
+    <!-- Tắt hiệu ứng nháy cửa sổ mặc định của hệ điều hành khi chuyển Sáng/Tối bằng sóng tròn Circular Reveal. -->
+    <style name="WindowNoAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
 </resources>
 
