@@ -80,20 +80,15 @@ class RoundedGradientBarRenderer(
                 barPath.addRoundRect(barRect, radii, Path.Direction.CW)
                 c.drawPath(barPath, mRenderPaint)
 
-                // Viền sáng mảnh ở đỉnh cột (top specular highlight)
+                // Viền sáng mảnh chỉ ở cung đỉnh cột (top specular rim light)
                 rimPaint.color = ColorUtils.setAlphaComponent(
                     ColorUtils.blendARGB(baseColor, Color.WHITE, 0.55f),
                     0xB8
                 )
-                c.drawRoundRect(
-                    left + 0.5f,
-                    top + 0.5f,
-                    right - 0.5f,
-                    min(bottom, top + r * 1.6f),
-                    r,
-                    r,
-                    rimPaint
-                )
+                c.save()
+                c.clipRect(left, top, right, top + r * 0.85f)
+                c.drawPath(barPath, rimPaint)
+                c.restore()
             }
             j += 4
         }
