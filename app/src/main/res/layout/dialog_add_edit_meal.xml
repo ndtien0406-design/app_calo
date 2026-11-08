@@ -182,22 +182,25 @@
                 android:id="@+id/til_portion"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 app:boxCornerRadiusBottomEnd="14dp"
                 app:boxCornerRadiusBottomStart="14dp"
                 app:boxCornerRadiusTopEnd="14dp"
-                app:boxCornerRadiusTopStart="14dp">
+                app:boxCornerRadiusTopStart="14dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_portion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:inputType="numberDecimal"
                     android:maxLines="1"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
                     android:text="1"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -253,7 +256,8 @@
                 app:boxCornerRadiusTopEnd="14dp"
                 app:boxCornerRadiusTopStart="14dp"
                 app:endIconDrawable="@drawable/ic_calendar"
-                app:endIconMode="custom">
+                app:endIconMode="custom"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_meal_date"
@@ -276,7 +280,8 @@
                 app:boxCornerRadiusTopEnd="14dp"
                 app:boxCornerRadiusTopStart="14dp"
                 app:endIconDrawable="@drawable/ic_clock"
-                app:endIconMode="custom">
+                app:endIconMode="custom"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_meal_time"

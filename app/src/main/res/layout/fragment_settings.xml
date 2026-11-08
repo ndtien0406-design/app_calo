@@ -79,40 +79,54 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_12"
                     android:baselineAligned="false"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="52dp"
                         android:layout_weight="1"
                         app:boxCornerRadiusBottomEnd="@dimen/radius_field"
                         app:boxCornerRadiusBottomStart="@dimen/radius_field"
                         app:boxCornerRadiusTopEnd="@dimen/radius_field"
                         app:boxCornerRadiusTopStart="@dimen/radius_field"
-                        app:helperText="@string/target_range_hint"
+                        app:hintEnabled="false"
                         app:suffixText="kcal/ngày">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_target_calories"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:fontFeatureSettings="tnum"
+                            android:gravity="center_vertical"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:maxLength="5" />
+                            android:maxLength="5"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_save_target"
                         android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_marginStart="@dimen/space_8"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="@dimen/space_12"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:minWidth="88dp"
+                        android:minWidth="96dp"
                         android:stateListAnimator="@animator/uiverse_press_scale"
-                        android:text="@string/save" />
+                        android:text="@string/save"
+                        app:cornerRadius="@dimen/radius_field" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/target_range_hint"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -206,18 +220,20 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="64dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_date_block"
                         android:importantForAccessibility="no"
+                        android:padding="10dp"
                         android:src="@drawable/ic_flame"
-                        app:tint="?attr/colorOnSurfaceVariant" />
+                        app:tint="?attr/colorPrimary" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -239,24 +255,26 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginStart="48dp"
+                    android:layout_marginStart="68dp"
                     android:layout_marginEnd="@dimen/space_16"
                     android:background="?attr/colorOutlineVariant" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="64dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/space_16"
                     android:paddingEnd="@dimen/space_16">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_date_block"
                         android:importantForAccessibility="no"
+                        android:padding="10dp"
                         android:src="@drawable/ic_info"
-                        app:tint="?attr/colorOnSurfaceVariant" />
+                        app:tint="?attr/colorPrimary" />
 
                     <TextView
                         android:layout_width="0dp"
